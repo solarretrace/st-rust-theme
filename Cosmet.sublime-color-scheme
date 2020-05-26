@@ -1,0 +1,74 @@
+{
+    "name": "Cosmet",
+
+    "variables":
+    {
+        "white": "#D0D0D0",
+        "grey": "#a0a0a0",
+        "light_orange": "#FF9900",
+        "orange": "#DD7700",
+        "green": "#559970",
+        "bright_red": "#FF0000",
+        "deep_purple": "#BB4679",
+        "red": "#CC2244",
+        "yellow": "#DDDD84",
+        "light_green": "#47C266",
+
+
+        "light grey": "#C0C0C0",
+        "violet": "#FF0099",
+        "blue": "#4FA0DF",
+        "pale_blue": "#8A71A2",
+    },
+    
+    "globals":
+    {
+        "background": "#252532",
+        "foreground": "var(white)",
+        "invisibles": "var(green)",
+        "caret": "#CEE2E3",
+        "block_caret": "#CEE2E3",
+        "line_highlight": "#770077",
+    },
+    
+    "rules":
+    [
+        // Comments, annotations, and invalid scopes.
+        {
+            "scope": "invalid",
+            "foreground": "var(bright_red)",
+            "font_style": "bold"
+        },
+        {
+            "scope": "comment, punctuation.definition.comment",
+            "foreground": "var(green)",
+            "font_style": "italic"
+        },
+        { 
+            "scope": "comment.tag",
+            "foreground": "var(light_orange)",
+            "font_style": "bold"
+        },
+        { "scope": "meta.annotation", "foreground": "var(green)" },
+
+        // General keywords and punctuation.
+        { "scope": "keyword",          "foreground": "var(orange)" },
+        { "scope": "keyword.other",    "foreground": "var(pale_blue)" },
+        { "scope": "keyword.operator", "foreground": "var(grey)" },
+        { "scope": "punctuation",      "foreground": "var(grey)" },
+
+        // Strings and constants.
+        { "scope": "string",                     "foreground": "var(deep_purple)" },
+        { "scope": "constant",                   "foreground": "var(pale_blue)" },
+        { "scope": "constant.character.escape",  "foreground": "var(pale_blue)" },
+        { "scope": "constant.other.placeholder", "foreground": "var(deep_purple)", 
+            "font_style": "bold"},
+
+        // Types.
+        { "scope": "storage.type",         "foreground": "var(yellow)" },
+        { "scope": "entity.name.type",     "foreground": "var(yellow)" },
+        { "scope": "entity.name.constant", "foreground": "var(yellow)" },
+        { "scope": "entity.name.function", "foreground": "var(blue)" },
+        { "scope": "variable.other",       "foreground": "var(light_green)" },
+    ]
+}

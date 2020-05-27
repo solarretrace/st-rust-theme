@@ -1,7 +1,7 @@
 %YAML 1.2
 ---
 # See http://www.sublimetext.com/docs/3/syntax.html
-name: Rust
+name: SimpleRust
 file_extensions: rs
 scope: source.rust
 
@@ -84,41 +84,38 @@ contexts:
       scope: variable.other.rust
 
   main:
-    - include: statements
+    - include: operators
+    - include: attributes
 
-  operators:
-    - match: '(\.\.\.|\.\.|\.\.=|\*|&)'
-      scope: keyword.operator.rust
+    - match: '({{fn}})\s+({{identifier}})'
+      captures:
+        1: keyword.declaration.rust
+        2: entity.name.function.rust
+    - include: keywords
 
-    - match: '{{as}}|{{await}}'
-      scope: keyword.operator.word.rust
+    - match: '\b(u8|u16|u32|u64|u128|usize)\b'
+      scope: storage.type.rust
+    - match: '\b(i8|i16|i32|i64|i128|isize)\b'
+      scope: storage.type.rust
+    - match: '\b(f32|f64)\b'
+      scope: storage.type.rust
+    - match: '\b(bool)\b'
+      scope: storage.type.rust
+    - match: '{{lifetime}}'
+      scope: storage.type.rust
+    - match: '{{camel_identifier}}'
+      scope: storage.type.rust
+    - match: '{{upper_identifier}}'
+      scope: storage.type.rust
+    - match: '{{identifier}}!'
+      scope: entity.name.macro.rust
+    - match: '{{identifier}}'
+      scope: entity.name.rust
 
-    - match: '(\+|\+=|-|-=|\*|\*=|/|/=|%|%=)'
-      scope: keyword.operator.arithmetic.rust
+    - include: strings
+    - include: chars
+    - include: numbers
 
-    - match: '(&|&=|\||\|=|\^|\^=|!|!=)'
-      scope: keyword.operator.boolean.rust
-
-    - match: '(!|==|!=|>|>=|<|<=|&&|\|\|)'
-      scope: keyword.operator.logical.rust
-
-    - match: '='
-      scope: keyword.operator.assignment.rust
-
-    - match: '(=>|->|:|@)'
-      scope: punctuation.rust
-
-    - match: '(\.|::)'
-      scope: punctuation.accessor.rust
-
-    - match: ','
-      scope: punctuation.separator.rust
-
-    - match: ';'
-      scope: punctuation.terminator.rust
-
-    - match: '\\'
-      scope: punctuation.separator.continuation.rust
 
   keywords:
     - match: '(?x)
@@ -135,7 +132,7 @@ contexts:
         {{unsized}}|
         {{virtual}}|
         {{yield}}'
-      scope: invalid.illegal.keyword.rust
+      scope: invalid.illegal.rust
 
     - match: '(?x)
         {{async}}|
@@ -158,7 +155,7 @@ contexts:
         {{unsafe}}|
         {{use}}|
         {{where}}'
-      scope: keyword.rust
+      scope: keyword.declaration.rust
 
     - match: '(?x)
         {{break}}|
@@ -183,226 +180,56 @@ contexts:
     - match: '{{true}}|{{false}}'
       scope: constant.language.rust
 
+  operators:
+    - match: '(\.\.\.|\.\.|\.\.=|\*|&)'
+      scope: keyword.operator.rust
+    - match: '{{as}}|{{await}}'
+      scope: keyword.operator.word.rust
+    - match: '(\+|\+=|-|-=|\*|\*=|/|/=|%|%=)'
+      scope: keyword.operator.arithmetic.rust
+    - match: '(&|&=|\||\|=|\^|\^=|!|!=)'
+      scope: keyword.operator.boolean.rust
+    - match: '(!|==|!=|>|>=|<|<=|&&|\|\|)'
+      scope: keyword.operator.logical.rust
+    - match: '='
+      scope: keyword.operator.assignment.rust
+    - match: '(\.|::)'
+      scope: punctuation.accessor.rust
+    - match: '(=>|->|:|@)'
+      scope: punctuation.rust
+    - match: ','
+      scope: punctuation.separator.rust
+    - match: ';'
+      scope: punctuation.terminator.rust
+    - match: '\\'
+      scope: punctuation.separator.continuation.rust
 
-
-
-  # Statements
-  # ============================================================================
-  statements:
-    # - include: simple-path
-    # - include: path-in-expression
-    - include: qualified-path-in-expression
-
-
-
-  # Blocks
-  # ============================================================================
-
-  # Extern crate items
-  # ============================================================================
-  # Use items
-  # ============================================================================
-  # Mod items
-  # ============================================================================
-  # Struct items
-  # ============================================================================
-  # Enum items
-  # ============================================================================
-  # Union items
-  # ============================================================================
-  # Trait items
-  # ============================================================================
-  # Impl items
-  # ============================================================================
-  # Macro Items
-  # ============================================================================
-  # Fn items
-  # ============================================================================
-  # Const items
-  # ============================================================================
-  # Static items
-  # ============================================================================
-  # Extern block items
-  # ============================================================================
-  # Macro Rules
-  # ============================================================================
-
-  # Visibility
-  # ============================================================================
-  visibility:
-    - match: '({{pub}})\s*(\()'
-      captures:
-        1: keyword.rust
-        2: punctuation.definition.group.begin.rust
-      push:
-        - include: comments
-        - match: '\)'
-          scope: punctuation.definition.group.end.rust
-          pop: true
-        - match: '{{in}}'
-          scope: keyword.operator.word.rust
-        - match: '({{crate}}|{{self}}|{{super}})'
-          scope: keyword.other.rust
-        - match: '::'
-          scope: meta.path.rust
-        - match: '{{identifier}}'
-          scope: meta.path.rust
-    - match: '{{pub}}|{{crate}}'
-      scope: keyword.rust
 
   # Attributes
   # ============================================================================
-  # Paths
-  # ============================================================================
-  # Syntax
-  # SimplePath :
-  #    ::? SimplePathSegment (:: SimplePathSegment)*
-  simple-path:
-    - match: '::'
-      scope: punctuation.accessor.path.rust
-    # SimplePathSegment :
-    #    IDENTIFIER | super | self | crate | $crate
-    - match: '{{super}}|{{self}}|{{crate}}|\${{crate}}'
-      scope: keyword.other.path.rust
-    - match: '{{upper_identifier}}'
-      scope: entity.name.path.rust storage.type.rust
-    - match: '{{camel_identifier}}'
-      scope: entity.name.path.rust storage.type.rust
-    - match: '{{identifier}}'
-      scope: entity.name.path.rust
+  attributes:
+    - include: inner-attribute
+    - include: outer-attribute
 
-
-  # Syntax
-  # PathInExpression :
-  #    ::? PathExprSegment (:: PathExprSegment)*
-  path-in-expression:
-    - match: '::'
-      scope: punctuation.accessor.path.rust
-    # PathIdentSegment :
-    #    IDENTIFIER | super | self | Self | crate | $crate
-    - include: path-ident-segment
-    # PathExprSegment :
-    #    PathIdentSegment (:: GenericArgs)?
-    - include: generic-args
-
-  # GenericArgs :
-  #       < >
-  #    | < GenericArgsLifetimes ,? >
-  #    | < GenericArgsTypes ,? >
-  #    | < GenericArgsBindings ,? >
-  #    | < GenericArgsTypes , GenericArgsBindings ,? >
-  #    | < GenericArgsLifetimes , GenericArgsTypes ,? >
-  #    | < GenericArgsLifetimes , GenericArgsBindings ,? >
-  #    | < GenericArgsLifetimes , GenericArgsTypes , GenericArgsBindings ,? >
-  generic-args:
-    - match: '<'
-      scope: punctuation.definition.generic.begin.rust
+  inner-attribute:
+    - match: '#!\['
+      scope: punctuation.definition.attribute.begin.rust
       push:
-        - match: '>'
-          scope: punctuation.definition.generic.end.rust
+        - meta_include_prototype: false
+        - meta_scope: meta.annotation.rust
+        - match: '\]'
+          scope: punctuation.definition.attribute.end.rust
           pop: true
-        - match: ','
-          scope: punctuation.separator.rust
-        # GenericArgsLifetimes :
-        #    Lifetime (, Lifetime)*
-        - match: '''{{identifier}}'
-          scope: storage.type.lifetime.rust
-        # GenericArgsBindings :
-        #    GenericArgsBinding (, GenericArgsBinding)*
-        - include: generic-args-binding
-        # GenericArgsTypes :
-        #    Type (, Type)*
-        - include: type
 
-
-  # GenericArgsBinding :
-  #    IDENTIFIER = Type
-  generic-args-binding:
-    - match: '({{identifier}})\s*(=)'
-      captures:
-        1: storage.type.rust
-        2: keyword.operator.assignment.rust
-      push: type
-
-
-
-  # Syntax
-  # QualifiedPathInExpression :
-  #    QualifiedPathType (:: PathExprSegment)+
-  qualified-path-in-expression:
-    # QualifiedPathType :
-    #    < Type (as TypePath)? >
-    - match: '<'
-      scope: punctuation.definition.qualified-path.begin.rust
+  outer-attribute:
+    - match: '#\['
+      scope: punctuation.definition.attribute.begin.rust
       push:
-        - match: '>'
-          scope: punctuation.definition.qualified-path.end.rust
+        - meta_include_prototype: false
+        - meta_scope: meta.annotation.rust
+        - match: '\]'
+          scope: punctuation.definition.attribute.end.rust
           pop: true
-        - match: '{{as}}'
-          scope: keyword.operator.word.rust
-          push: type-path
-        - include: type
-    - match: '::'
-      scope: punctuation.accessor.path.rust
-    - include: type-path
-
-  # QualifiedPathInType :
-  #    QualifiedPathType (:: TypePathSegment)+
-
-
-  # Syntax
-  # TypePath :
-  #    ::? TypePathSegment (:: TypePathSegment)*
-  type-path:
-    - match: '::'
-      scope: punctuation.accessor.path.rust
-    - include: type-path-segment
-
-  type-path-segment:
-    # TypePathSegment :
-    #    PathIdentSegment ::? (GenericArgs | TypePathFn)?
-    - include: path-ident-segment
-    - include: generic-args
-    # TypePathFn :
-    # ( TypePathFnInputs? ) (-> Type)?
-    - match: '\('
-      scope: punctuation.definition.group.begin.rust
-      push:
-        - match: '\)'
-          scope: punctuation.definition.group.end.rust
-          pop: true
-        # TypePathFnInputs :
-        # Type (, Type)* ,?
-        - match: ','
-          scope: punctuation.separator.rust
-        - include: type
-    - match: '->'
-      scope: keyword.operator.rust
-    - include: type
-
-  path-ident-segment:
-    - match: '{{super}}|{{self}}|{{Self}}|{{crate}}|\${{crate}}'
-      scope: keyword.other.path.rust
-    - match: '{{upper_identifier}}'
-      scope: entity.name.path.rust storage.type.rust
-    - match: '{{camel_identifier}}'
-      scope: entity.name.path.rust storage.type.rust
-    - match: '{{identifier}}'
-      scope: entity.name.path.rust
-
-  # Types
-  # ============================================================================
-  type:
-    - match: '{{identifier}}'
-      scope: storage.type.rust
-    - match: '(?=\S)'
-      pop: true
-
-  # Generics
-  # ============================================================================
-  # Patterns
-  # ============================================================================
-
 
   # Strings
   # ============================================================================
@@ -534,56 +361,6 @@ contexts:
           scope: punctuation.definition.string.end.rust
           pop: true
 
-  # Format strings
-  # ============================================================================
-  format-strings:
-    - include: format-string
-    - include: format-raw-string
-
-  format-string:
-    - match: '"'
-      scope: punctuation.definition.string.begin.rust
-      push:
-        - meta_include_prototype: false
-        - meta_scope: string.quoted.double.rust
-        - match: '"'
-          scope: punctuation.definition.string.end.rust
-          pop: true
-        - include: escaped-char
-        - include: format-escapes
-
-  format-raw-string:
-    - match: '(r)(#*)"'
-      captures:
-        1: keyword.operator.string-prefix.rust
-        2: punctuation.definition.string.begin.rust
-      push:
-        - meta_include_prototype: false
-        - meta_scope: string.quoted.double.raw.rust
-        - match: '"\2'
-          scope: punctuation.definition.string.end.rust
-          pop: true
-        - include: format-escapes
-
-  format-escapes:
-    - match: '\{\{|\}\}'
-      scope: constant.character.escape.rust
-    - match: '|-
-        (?x)                      # Spec from http://doc.rust-lang.org/std/fmt/
-        \{
-          (\d+|{{identifier}})?
-          (
-            :                     # format_spec delimiter
-            (.?[<>^])?            # [[fill]align]
-            [+-]?                 # [sign]
-            \#?                   # [#]
-            0?                    # [0]
-            (\d+\$?)?             # [width]
-            (\.(\d+\$?|\*)?)?     # [. precision]
-            (\?|{{identifier}})?  # [type]
-          )?
-        \}'
-      scope: constant.other.placeholder.rust
 
   # Numbers
   # ============================================================================

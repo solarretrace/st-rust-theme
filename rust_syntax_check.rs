@@ -334,7 +334,7 @@ trait Bingo {
 fn main() {
 	do box
 
-	let a = 1234;
+	let a = 1234?;
 	let a = 1234;
 	let a = 0x1234;
 	let a = 0x1234ABCDEF;

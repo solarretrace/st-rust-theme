@@ -3,7 +3,7 @@
 # See http://www.sublimetext.com/docs/3/syntax.html
 name: SimpleRust
 file_extensions: rs
-scope: source.rust
+scope: source.simplerust
 
 variables:
   identifier: '(?:(?:r\#)?{{non_raw_identifier}})'
@@ -81,7 +81,7 @@ contexts:
     - include: comments
     # Macro variables are allowed everywhere.
     - match: '\${{identifier}}'
-      scope: variable.other.rust
+      scope: variable.other.simplerust
 
   main:
     - include: operators
@@ -89,28 +89,26 @@ contexts:
 
     - match: '({{fn}})\s+({{identifier}})'
       captures:
-        1: keyword.declaration.rust
-        2: entity.name.function.rust
+        1: keyword.declaration.simplerust
+        2: entity.name.function.simplerust
     - include: keywords
 
-    - match: '\b(u8|u16|u32|u64|u128|usize)\b'
-      scope: storage.type.rust
-    - match: '\b(i8|i16|i32|i64|i128|isize)\b'
-      scope: storage.type.rust
-    - match: '\b(f32|f64)\b'
-      scope: storage.type.rust
+    - match: '\b{{int_suffixes}}\b'
+      scope: storage.type.simplerust
+    - match: '\b{{float_suffixes}}\b'
+      scope: storage.type.simplerust
     - match: '\b(bool)\b'
-      scope: storage.type.rust
+      scope: storage.type.simplerust
     - match: '{{lifetime}}'
-      scope: storage.type.rust
+      scope: storage.type.simplerust
     - match: '{{camel_identifier}}'
-      scope: storage.type.rust
+      scope: storage.type.simplerust
     - match: '{{upper_identifier}}'
-      scope: storage.type.rust
+      scope: storage.type.simplerust
     - match: '{{identifier}}!'
-      scope: entity.name.macro.rust
+      scope: entity.name.macro.simplerust
     - match: '{{identifier}}'
-      scope: entity.name.rust
+      scope: entity.name.simplerust
 
     - include: strings
     - include: chars
@@ -132,7 +130,7 @@ contexts:
         {{unsized}}|
         {{virtual}}|
         {{yield}}'
-      scope: invalid.illegal.rust
+      scope: invalid.illegal.simplerust
 
     - match: '(?x)
         {{async}}|
@@ -155,7 +153,7 @@ contexts:
         {{unsafe}}|
         {{use}}|
         {{where}}'
-      scope: keyword.declaration.rust
+      scope: keyword.declaration.simplerust
 
     - match: '(?x)
         {{break}}|
@@ -166,43 +164,45 @@ contexts:
         {{match}}|
         {{return}}|
         {{while}}'
-      scope: keyword.control.rust
+      scope: keyword.control.simplerust
 
     - match: '{{else}}|{{if}}'
-      scope: keyword.control.conditional.rust
+      scope: keyword.control.conditional.simplerust
 
     - match: '{{self}}|{{super}}|{{crate}}'
-      scope: keyword.other.rust
+      scope: keyword.other.simplerust
 
     - match: '{{Self}}|{{dyn}}'
-      scope: storage.type.rust
+      scope: storage.type.simplerust
 
     - match: '{{true}}|{{false}}'
-      scope: constant.language.rust
+      scope: constant.language.simplerust
 
   operators:
+    - match: '\?'
+      scope: keyword.control.simplerust
     - match: '(\.\.\.|\.\.|\.\.=|\*|&)'
-      scope: keyword.operator.rust
+      scope: keyword.operator.simplerust
     - match: '{{as}}|{{await}}'
-      scope: keyword.operator.word.rust
+      scope: keyword.operator.word.simplerust
     - match: '(\+|\+=|-|-=|\*|\*=|/|/=|%|%=)'
-      scope: keyword.operator.arithmetic.rust
+      scope: keyword.operator.arithmetic.simplerust
     - match: '(&|&=|\||\|=|\^|\^=|!|!=)'
-      scope: keyword.operator.boolean.rust
+      scope: keyword.operator.boolean.simplerust
     - match: '(!|==|!=|>|>=|<|<=|&&|\|\|)'
-      scope: keyword.operator.logical.rust
+      scope: keyword.operator.logical.simplerust
     - match: '='
-      scope: keyword.operator.assignment.rust
+      scope: keyword.operator.assignment.simplerust
     - match: '(\.|::)'
-      scope: punctuation.accessor.rust
+      scope: punctuation.accessor.simplerust
     - match: '(=>|->|:|@)'
-      scope: punctuation.rust
+      scope: punctuation.simplerust
     - match: ','
-      scope: punctuation.separator.rust
+      scope: punctuation.separator.simplerust
     - match: ';'
-      scope: punctuation.terminator.rust
+      scope: punctuation.terminator.simplerust
     - match: '\\'
-      scope: punctuation.separator.continuation.rust
+      scope: punctuation.separator.continuation.simplerust
 
 
   # Attributes
@@ -213,22 +213,22 @@ contexts:
 
   inner-attribute:
     - match: '#!\['
-      scope: punctuation.definition.attribute.begin.rust
+      scope: punctuation.definition.attribute.begin.simplerust
       push:
         - meta_include_prototype: false
-        - meta_scope: meta.annotation.rust
+        - meta_scope: meta.annotation.simplerust
         - match: '\]'
-          scope: punctuation.definition.attribute.end.rust
+          scope: punctuation.definition.attribute.end.simplerust
           pop: true
 
   outer-attribute:
     - match: '#\['
-      scope: punctuation.definition.attribute.begin.rust
+      scope: punctuation.definition.attribute.begin.simplerust
       push:
         - meta_include_prototype: false
-        - meta_scope: meta.annotation.rust
+        - meta_scope: meta.annotation.simplerust
         - match: '\]'
-          scope: punctuation.definition.attribute.end.rust
+          scope: punctuation.definition.attribute.end.simplerust
           pop: true
 
   # Strings
@@ -246,11 +246,11 @@ contexts:
   byte:
     - match: '(b)('')'
       captures:
-        1: keyword.operator.string-prefix.rust
-        2: punctuation.definition.string.begin.rust
+        1: keyword.operator.string-prefix.simplerust
+        2: punctuation.definition.string.begin.simplerust
       push:
         - meta_include_prototype: false
-        - meta_scope: string.quoted.single.rust
+        - meta_scope: string.quoted.single.simplerust
         # ASCII except ', \, \n, \r or \t
         - match: '[\x00-\x08\x0b-\x0c\x0e-\x26\x28-\x5b\x5d-\x7f]'
           set: byte-tail
@@ -259,25 +259,25 @@ contexts:
         - match: '\n'
           pop: true
         - match: '{{escaped_byte}}'
-          scope: constant.character.escape.rust
+          scope: constant.character.escape.simplerust
           set: byte-tail
         - match: ''
           set: byte-tail
 
   byte-tail:
     - match: "'"
-      scope: string.quoted.single.rust punctuation.definition.string.end.rust
+      scope: string.quoted.single.simplerust punctuation.definition.string.end.simplerust
       pop: true
     - match: '\n'
       pop: true
     - match: '.'
-      scope: invalid.illegal.byte.rust
+      scope: invalid.illegal.byte.simplerust
 
   char:
     - match: "'"
-      scope: punctuation.definition.string.begin.rust
+      scope: punctuation.definition.string.begin.simplerust
       push:
-        - meta_scope: string.quoted.single.rust
+        - meta_scope: string.quoted.single.simplerust
         - match: "[^'\\\\\n\r\t]"
           set: char-tail
         # Don't mark entire file invalid while writing, even though this is
@@ -285,80 +285,80 @@ contexts:
         - match: '\n'
           pop: true
         - match: '{{escaped_char}}'
-          scope: constant.character.escape.rust
+          scope: constant.character.escape.simplerust
           set: char-tail
         - match: ''
           set: char-tail
 
   char-tail:
     - match: "'"
-      scope: string.quoted.single.rust punctuation.definition.string.end.rust
+      scope: string.quoted.single.simplerust punctuation.definition.string.end.simplerust
       pop: true
     - match: '\n'
       pop: true
     - match: '.'
-      scope: invalid.illegal.char.rust
+      scope: invalid.illegal.char.simplerust
 
   escaped-char:
     - match: '{{escaped_char}}'
-      scope: constant.character.escape.rust
+      scope: constant.character.escape.simplerust
     - match: '\\u\{[^}]*\}'
-      scope: invalid.illegal.character.escape.rust
+      scope: invalid.illegal.character.escape.simplerust
     - match: '\\.'
-      scope: invalid.illegal.character.escape.rust
+      scope: invalid.illegal.character.escape.simplerust
 
 
   byte-string:
     - match: '(b)(")'
       captures:
-        1: keyword.operator.string-prefix.rust
-        2: punctuation.definition.string.begin.rust
+        1: keyword.operator.string-prefix.simplerust
+        2: punctuation.definition.string.begin.simplerust
       push:
         - meta_include_prototype: false
-        - meta_scope: string.quoted.double.rust
+        - meta_scope: string.quoted.double.simplerust
         - match: '"'
-          scope: punctuation.definition.string.end.rust
+          scope: punctuation.definition.string.end.simplerust
           pop: true
         - match: '{{escaped_byte}}'
-          scope: constant.character.escape.rust
+          scope: constant.character.escape.simplerust
         - match: '\\.'
-          scope: invalid.illegal.character.escape.rust
+          scope: invalid.illegal.character.escape.simplerust
 
   raw-byte-string:
     - match: '(br)(#*)(")'
       captures:
-        1: keyword.operator.string-prefix.rust
-        2: punctuation.definition.string.begin.rust
-        3: punctuation.definition.string.begin.rust
+        1: keyword.operator.string-prefix.simplerust
+        2: punctuation.definition.string.begin.simplerust
+        3: punctuation.definition.string.begin.simplerust
       push:
         - meta_include_prototype: false
-        - meta_scope: string.quoted.double.raw.rust
+        - meta_scope: string.quoted.double.raw.simplerust
         - match: '"\2'
-          scope: punctuation.definition.string.end.rust
+          scope: punctuation.definition.string.end.simplerust
           pop: true
 
   string:
     - match: '"'
-      scope: punctuation.definition.string.begin.rust
+      scope: punctuation.definition.string.begin.simplerust
       push:
         - meta_include_prototype: false
-        - meta_scope: string.quoted.double.rust
+        - meta_scope: string.quoted.double.simplerust
         - match: '"'
-          scope: punctuation.definition.string.end.rust
+          scope: punctuation.definition.string.end.simplerust
           pop: true
         - include: escaped-char
 
   raw-string:
     - match: (r)(#*)(")
       captures:
-        1: keyword.operator.string-prefix.rust
-        2: punctuation.definition.string.begin.rust
-        3: punctuation.definition.string.begin.rust
+        1: keyword.operator.string-prefix.simplerust
+        2: punctuation.definition.string.begin.simplerust
+        3: punctuation.definition.string.begin.simplerust
       push:
         - meta_include_prototype: false
-        - meta_scope: string.quoted.double.raw.rust
+        - meta_scope: string.quoted.double.raw.simplerust
         - match: '"\2'
-          scope: punctuation.definition.string.end.rust
+          scope: punctuation.definition.string.end.simplerust
           pop: true
 
 
@@ -367,43 +367,43 @@ contexts:
   numbers:
     - match: '\b({{dec_literal}}(?:\.{{dec_literal}})?(?:{{float_exponent}})?)({{float_suffixes}})'
       captures:
-        1: constant.numeric.float.rust
-        2: storage.type.numeric.rust
+        1: constant.numeric.float.simplerust
+        2: storage.type.numeric.simplerust
     - match: '\b{{dec_literal}}\.{{dec_literal}}(?:{{float_exponent}})?'
-      scope: constant.numeric.float.rust
+      scope: constant.numeric.float.simplerust
     - match: '\b{{dec_literal}}{{float_exponent}}'
-      scope: constant.numeric.float.rust
+      scope: constant.numeric.float.simplerust
     - match: '\b{{dec_literal}}\.(?![A-Za-z._''])'
-      scope: constant.numeric.float.rust
+      scope: constant.numeric.float.simplerust
 
     - match: '\b({{dec_literal}})({{int_suffixes}})?\b'
       captures:
-        1: constant.numeric.integer.decimal.rust
-        2: storage.type.numeric.rust
+        1: constant.numeric.integer.decimal.simplerust
+        2: storage.type.numeric.simplerust
     - match: '\b(0x[\h_]+)({{int_suffixes}})?\b'
       captures:
-        1: constant.numeric.integer.hexadecimal.rust
-        2: storage.type.numeric.rust
+        1: constant.numeric.integer.hexadecimal.simplerust
+        2: storage.type.numeric.simplerust
     - match: '\b(0o[0-7_]+)({{int_suffixes}})?\b'
       captures:
-        1: constant.numeric.integer.octal.rust
-        2: storage.type.numeric.rust
+        1: constant.numeric.integer.octal.simplerust
+        2: storage.type.numeric.simplerust
     - match: '\b(0b[0-1_]+)({{int_suffixes}})?\b'
       captures:
-        1: constant.numeric.integer.binary.rust
-        2: storage.type.numeric.rust
+        1: constant.numeric.integer.binary.simplerust
+        2: storage.type.numeric.simplerust
     # Check for invalid octal and binary sequences that didn't match above.
     - match: '\b(0(:?x|o|b)[0-9A-Za-z_]+)({{int_suffixes}})?\b'
       captures:
-        1: invalid.illegal.character.numeric.rust
-        3: storage.type.numeric.rust
+        1: invalid.illegal.character.numeric.simplerust
+        3: storage.type.numeric.simplerust
 
   # Comments
   # ============================================================================
   comment_custom_tags:
     - match: '(TODO):'
       captures:
-        1: comment.tag.rust
+        1: comment.tag.simplerust
 
   comments:
     - include: any_line_comment
@@ -417,25 +417,25 @@ contexts:
 
   line_comment:
     - match: '//'
-      scope: punctuation.definition.comment.rust
+      scope: punctuation.definition.comment.simplerust
       push:
-        - meta_scope: comment.line.rust
+        - meta_scope: comment.line.simplerust
         - match: $\n?
           pop: true
 
   inner_line_documentation_comment:
     - match: '//!'
-      scope: punctuation.definition.comment.documentation.inner.rust
+      scope: punctuation.definition.comment.documentation.inner.simplerust
       push:
-        - meta_scope: comment.line.documentation.inner.rust
+        - meta_scope: comment.line.documentation.inner.simplerust
         - match: $\n?
           pop: true
 
   outer_line_documentation_comment:
     - match: '///'
-      scope: punctuation.definition.comment.documentation.outer.rust
+      scope: punctuation.definition.comment.documentation.outer.simplerust
       push:
-        - meta_scope: comment.line.documentation.outer.rust
+        - meta_scope: comment.line.documentation.outer.simplerust
         - match: $\n?
           pop: true
 
@@ -446,30 +446,30 @@ contexts:
 
   block_comment:
     - match: '/\*'
-      scope: punctuation.definition.comment.begin.rust
+      scope: punctuation.definition.comment.begin.simplerust
       push:
         - include: any_block_comment # Block comments can nest
-        - meta_scope: comment.block.rust
+        - meta_scope: comment.block.simplerust
         - match: '\*/'
-          scope: punctuation.definition.comment.end.rust
+          scope: punctuation.definition.comment.end.simplerust
           pop: true
 
   inner_block_documentation_comment:
     - match: '/\*!'
-      scope: punctuation.definition.comment.documentation.inner.begin.rust
+      scope: punctuation.definition.comment.documentation.inner.begin.simplerust
       push:
         - include: any_block_comment # Block comments can nest
-        - meta_scope: comment.block.documentation.inner.rust
+        - meta_scope: comment.block.documentation.inner.simplerust
         - match: '\*/'
-          scope: punctuation.definition.comment.documentation.inner.end.rust
+          scope: punctuation.definition.comment.documentation.inner.end.simplerust
           pop: true
 
   outer_block_documentation_comment:
     - match: '/\*\*'
-      scope: punctuation.definition.comment.documentation.outer.begin.rust
+      scope: punctuation.definition.comment.documentation.outer.begin.simplerust
       push:
         - include: any_block_comment # Block comments can nest
-        - meta_scope: comment.block.documentation.outer.rust
+        - meta_scope: comment.block.documentation.outer.simplerust
         - match: '\*/'
-          scope: punctuation.definition.comment.documentation.outer.end.rust
+          scope: punctuation.definition.comment.documentation.outer.end.simplerust
           pop: true

@@ -69,6 +69,7 @@
         { "scope": "entity.name.type",     "foreground": "var(yellow)" },
         { "scope": "entity.name.constant", "foreground": "var(yellow)" },
         { "scope": "entity.name.function", "foreground": "var(blue)" },
+        { "scope": "entity.name.macro",    "foreground": "var(grey)" },
         { "scope": "variable.other",       "foreground": "var(light_green)" },
     ]
 }

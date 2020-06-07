@@ -75,6 +75,8 @@ pub mod abc {
 	};
 };
 
+let u: [A; 3] = abc;
+
 #![InnerAttr(some_value = "blah")]
 #![InnerAttr(some_value)]
 #![InnerAttr(some_value(abc))]
@@ -330,6 +332,9 @@ trait Bingo {
 	}
 	const VALUE: Type = blah;
 }
+
+fn abc() -> impl (dyn Adf + Send) {}
+
 
 fn main() {
 	do box

@@ -87,6 +87,9 @@ contexts:
     - include: operators
     - include: attributes
 
+    - match: '{{identifier}}!'
+      scope: entity.name.macro.simplerust
+
     - match: '({{fn}})\s+({{identifier}})'
       captures:
         1: keyword.declaration.simplerust
@@ -420,6 +423,7 @@ contexts:
       scope: punctuation.definition.comment.simplerust
       push:
         - meta_scope: comment.line.simplerust
+        - include: comment_custom_tags
         - match: $\n?
           pop: true
 
@@ -428,6 +432,7 @@ contexts:
       scope: punctuation.definition.comment.documentation.inner.simplerust
       push:
         - meta_scope: comment.line.documentation.inner.simplerust
+        - include: comment_custom_tags
         - match: $\n?
           pop: true
 
@@ -436,6 +441,7 @@ contexts:
       scope: punctuation.definition.comment.documentation.outer.simplerust
       push:
         - meta_scope: comment.line.documentation.outer.simplerust
+        - include: comment_custom_tags
         - match: $\n?
           pop: true
 
@@ -448,8 +454,9 @@ contexts:
     - match: '/\*'
       scope: punctuation.definition.comment.begin.simplerust
       push:
-        - include: any_block_comment # Block comments can nest
         - meta_scope: comment.block.simplerust
+        - include: any_block_comment # Block comments can nest
+        - include: comment_custom_tags
         - match: '\*/'
           scope: punctuation.definition.comment.end.simplerust
           pop: true
@@ -458,8 +465,9 @@ contexts:
     - match: '/\*!'
       scope: punctuation.definition.comment.documentation.inner.begin.simplerust
       push:
-        - include: any_block_comment # Block comments can nest
         - meta_scope: comment.block.documentation.inner.simplerust
+        - include: any_block_comment # Block comments can nest
+        - include: comment_custom_tags
         - match: '\*/'
           scope: punctuation.definition.comment.documentation.inner.end.simplerust
           pop: true
@@ -468,8 +476,9 @@ contexts:
     - match: '/\*\*'
       scope: punctuation.definition.comment.documentation.outer.begin.simplerust
       push:
-        - include: any_block_comment # Block comments can nest
         - meta_scope: comment.block.documentation.outer.simplerust
+        - include: any_block_comment # Block comments can nest
+        - include: comment_custom_tags
         - match: '\*/'
           scope: punctuation.definition.comment.documentation.outer.end.simplerust
           pop: true

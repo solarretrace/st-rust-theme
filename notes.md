@@ -1,4 +1,10 @@
 
+# Design ideas
+
+
+If some context is expected (even if optional), push it. The context should pop itself.
+
+
     <key>gutterSettings</key><dict>
         <key>background</key><string>#2b2b2b</string>
         <key>divider</key><string>#3b3b3b</string>

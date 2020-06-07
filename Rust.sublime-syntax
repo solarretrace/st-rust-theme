@@ -20,58 +20,58 @@ variables:
   float_suffixes: 'f(32|64)'
   float_exponent: '[eE][+-]?[0-9_]*[0-9][0-9_]*'
 
-  abstract: '\b(?<!r\#)abstract\b'
-  as: '\b(?<!r\#)as\b'
-  async: '\b(?<!r\#)async\b'
-  await: '\b(?<!r\#)await\b'
-  become: '\b(?<!r\#)become\b'
-  box: '\b(?<!r\#)box\b'
-  break: '\b(?<!r\#)break\b'
-  const: '\b(?<!r\#)const\b'
-  continue: '\b(?<!r\#)continue\b'
-  crate: '\b(?<!r\#)crate\b'
-  do: '\b(?<!r\#)do\b'
-  dyn: '\b(?<!r\#)dyn\b'
-  else: '\b(?<!r\#)else\b'
-  enum: '\b(?<!r\#)enum\b'
-  extern: '\b(?<!r\#)extern\b'
-  false: '\b(?<!r\#)false\b'
-  final: '\b(?<!r\#)final\b'
-  fn: '\b(?<!r\#)fn\b'
-  for: '\b(?<!r\#)for\b'
-  if: '\b(?<!r\#)if\b'
-  impl: '\b(?<!r\#)impl\b'
-  in: '\b(?<!r\#)in\b'
-  let: '\b(?<!r\#)let\b'
-  loop: '\b(?<!r\#)loop\b'
-  macro: '\b(?<!r\#)macro\b'
-  match: '\b(?<!r\#)match\b'
-  mod: '\b(?<!r\#)mod\b'
-  move: '\b(?<!r\#)move\b'
-  mut: '\b(?<!r\#)mut\b'
-  override: '\b(?<!r\#)override\b'
-  priv: '\b(?<!r\#)priv\b'
-  pub: '\b(?<!r\#)pub\b'
-  ref: '\b(?<!r\#)ref\b'
-  return: '\b(?<!r\#)return\b'
-  self: '\b(?<!r\#)self\b'
-  Self: '\b(?<!r\#)Self\b'
-  static: '\b(?<!r\#)static\b'
-  struct: '\b(?<!r\#)struct\b'
-  super: '\b(?<!r\#)super\b'
-  trait: '\b(?<!r\#)trait\b'
-  true: '\b(?<!r\#)true\b'
-  try: '\b(?<!r\#)try\b'
-  type: '\b(?<!r\#)type\b'
-  typeof: '\b(?<!r\#)typeof\b'
-  union: '\b(?<!r\#)union\b'
-  unsafe: '\b(?<!r\#)unsafe\b'
-  unsized: '\b(?<!r\#)unsized\b'
-  use: '\b(?<!r\#)use\b'
-  virtual: '\b(?<!r\#)virtual\b'
-  where: '\b(?<!r\#)where\b'
-  while: '\b(?<!r\#)while\b'
-  yield: '\b(?<!r\#)yield\b'
+  kw_abstract: '\b(?<!r\#)abstract\b'
+  kw_as: '\b(?<!r\#)as\b'
+  kw_async: '\b(?<!r\#)async\b'
+  kw_await: '\b(?<!r\#)await\b'
+  kw_become: '\b(?<!r\#)become\b'
+  kw_box: '\b(?<!r\#)box\b'
+  kw_break: '\b(?<!r\#)break\b'
+  kw_const: '\b(?<!r\#)const\b'
+  kw_continue: '\b(?<!r\#)continue\b'
+  kw_crate: '\b(?<!r\#)crate\b'
+  kw_do: '\b(?<!r\#)do\b'
+  kw_dyn: '\b(?<!r\#)dyn\b'
+  kw_else: '\b(?<!r\#)else\b'
+  kw_enum: '\b(?<!r\#)enum\b'
+  kw_extern: '\b(?<!r\#)extern\b'
+  kw_false: '\b(?<!r\#)false\b'
+  kw_final: '\b(?<!r\#)final\b'
+  kw_fn: '\b(?<!r\#)fn\b'
+  kw_for: '\b(?<!r\#)for\b'
+  kw_if: '\b(?<!r\#)if\b'
+  kw_impl: '\b(?<!r\#)impl\b'
+  kw_in: '\b(?<!r\#)in\b'
+  kw_let: '\b(?<!r\#)let\b'
+  kw_loop: '\b(?<!r\#)loop\b'
+  kw_macro: '\b(?<!r\#)macro\b'
+  kw_match: '\b(?<!r\#)match\b'
+  kw_mod: '\b(?<!r\#)mod\b'
+  kw_move: '\b(?<!r\#)move\b'
+  kw_mut: '\b(?<!r\#)mut\b'
+  kw_override: '\b(?<!r\#)override\b'
+  kw_priv: '\b(?<!r\#)priv\b'
+  kw_pub: '\b(?<!r\#)pub\b'
+  kw_ref: '\b(?<!r\#)ref\b'
+  kw_return: '\b(?<!r\#)return\b'
+  kw_self: '\b(?<!r\#)self\b'
+  kw_Self: '\b(?<!r\#)Self\b'
+  kw_static: '\b(?<!r\#)static\b'
+  kw_struct: '\b(?<!r\#)struct\b'
+  kw_super: '\b(?<!r\#)super\b'
+  kw_trait: '\b(?<!r\#)trait\b'
+  kw_true: '\b(?<!r\#)true\b'
+  kw_try: '\b(?<!r\#)try\b'
+  kw_type: '\b(?<!r\#)type\b'
+  kw_typeof: '\b(?<!r\#)typeof\b'
+  kw_union: '\b(?<!r\#)union\b'
+  kw_unsafe: '\b(?<!r\#)unsafe\b'
+  kw_unsized: '\b(?<!r\#)unsized\b'
+  kw_use: '\b(?<!r\#)use\b'
+  kw_virtual: '\b(?<!r\#)virtual\b'
+  kw_where: '\b(?<!r\#)where\b'
+  kw_while: '\b(?<!r\#)while\b'
+  kw_yield: '\b(?<!r\#)yield\b'
 
 contexts:
   # The prototype context is prepended to all contexts but those setting
@@ -86,104 +86,6 @@ contexts:
   main:
     - include: statements
 
-  operators:
-    - match: '(\.\.\.|\.\.|\.\.=|\*|&)'
-      scope: keyword.operator.rust
-
-    - match: '{{as}}|{{await}}'
-      scope: keyword.operator.word.rust
-
-    - match: '(\+|\+=|-|-=|\*|\*=|/|/=|%|%=)'
-      scope: keyword.operator.arithmetic.rust
-
-    - match: '(&|&=|\||\|=|\^|\^=|!|!=)'
-      scope: keyword.operator.boolean.rust
-
-    - match: '(!|==|!=|>|>=|<|<=|&&|\|\|)'
-      scope: keyword.operator.logical.rust
-
-    - match: '='
-      scope: keyword.operator.assignment.rust
-
-    - match: '(=>|->|:|@)'
-      scope: punctuation.rust
-
-    - match: '(\.|::)'
-      scope: punctuation.accessor.rust
-
-    - match: ','
-      scope: punctuation.separator.rust
-
-    - match: ';'
-      scope: punctuation.terminator.rust
-
-    - match: '\\'
-      scope: punctuation.separator.continuation.rust
-
-  keywords:
-    - match: '(?x)
-        {{abstract}}|
-        {{become}}|
-        {{box}}|
-        {{do}}|
-        {{final}}|
-        {{macro}}|
-        {{override}}|
-        {{priv}}|
-        {{try}}|
-        {{typeof}}|
-        {{unsized}}|
-        {{virtual}}|
-        {{yield}}'
-      scope: invalid.illegal.keyword.rust
-
-    - match: '(?x)
-        {{async}}|
-        {{const}}|
-        {{enum}}|
-        {{extern}}|
-        {{fn}}|
-        {{impl}}|
-        {{let}}|
-        {{mod}}|
-        {{move}}|
-        {{mut}}|
-        {{pub}}|
-        {{ref}}|
-        {{static}}|
-        {{struct}}|
-        {{trait}}|
-        {{type}}|
-        {{union}}|
-        {{unsafe}}|
-        {{use}}|
-        {{where}}'
-      scope: keyword.rust
-
-    - match: '(?x)
-        {{break}}|
-        {{continue}}|
-        {{for}}|
-        {{in}}|
-        {{loop}}|
-        {{match}}|
-        {{return}}|
-        {{while}}'
-      scope: keyword.control.rust
-
-    - match: '{{else}}|{{if}}'
-      scope: keyword.control.conditional.rust
-
-    - match: '{{self}}|{{super}}|{{crate}}'
-      scope: keyword.other.rust
-
-    - match: '{{Self}}|{{dyn}}'
-      scope: storage.type.rust
-
-    - match: '{{true}}|{{false}}'
-      scope: constant.language.rust
-
-
 
 
   # Statements
@@ -191,7 +93,8 @@ contexts:
   statements:
     # - include: simple-path
     # - include: path-in-expression
-    - include: qualified-path-in-expression
+    # - include: qualified-path-in-expression
+    - include: type
 
 
 
@@ -224,13 +127,14 @@ contexts:
   # ============================================================================
   # Extern block items
   # ============================================================================
-  # Macro Rules
+  # Macros
   # ============================================================================
+
 
   # Visibility
   # ============================================================================
   visibility:
-    - match: '({{pub}})\s*(\()'
+    - match: '({{kw_pub}})\s*(\()'
       captures:
         1: keyword.rust
         2: punctuation.definition.group.begin.rust
@@ -239,15 +143,15 @@ contexts:
         - match: '\)'
           scope: punctuation.definition.group.end.rust
           pop: true
-        - match: '{{in}}'
+        - match: '{{kw_in}}'
           scope: keyword.operator.word.rust
-        - match: '({{crate}}|{{self}}|{{super}})'
+        - match: '({{kw_crate}}|{{kw_self}}|{{kw_super}})'
           scope: keyword.other.rust
         - match: '::'
           scope: meta.path.rust
         - match: '{{identifier}}'
           scope: meta.path.rust
-    - match: '{{pub}}|{{crate}}'
+    - match: '{{kw_pub}}|{{kw_crate}}'
       scope: keyword.rust
 
   # Attributes
@@ -262,7 +166,7 @@ contexts:
       scope: punctuation.accessor.path.rust
     # SimplePathSegment :
     #    IDENTIFIER | super | self | crate | $crate
-    - match: '{{super}}|{{self}}|{{crate}}|\${{crate}}'
+    - match: '{{kw_super}}|{{kw_self}}|{{kw_crate}}|\${{kw_crate}}'
       scope: keyword.other.path.rust
     - match: '{{upper_identifier}}'
       scope: entity.name.path.rust storage.type.rust
@@ -324,31 +228,36 @@ contexts:
         2: keyword.operator.assignment.rust
       push: type
 
-
-
   # Syntax
   # QualifiedPathInExpression :
   #    QualifiedPathType (:: PathExprSegment)+
   qualified-path-in-expression:
     # QualifiedPathType :
     #    < Type (as TypePath)? >
-    - match: '<'
-      scope: punctuation.definition.qualified-path.begin.rust
-      push:
-        - match: '>'
-          scope: punctuation.definition.qualified-path.end.rust
-          pop: true
-        - match: '{{as}}'
-          scope: keyword.operator.word.rust
-          push: type-path
-        - include: type
+    - include: qualified-path-type
     - match: '::'
       scope: punctuation.accessor.path.rust
     - include: type-path
 
   # QualifiedPathInType :
   #    QualifiedPathType (:: TypePathSegment)+
+  qualified-path-in-type:
+    - include: qualified-path-type
+    - match: '::'
+      scope: punctuation.accessor.path.rust
+    - include: type-path-segment
 
+  qualified-path-type:
+    - match: '<'
+      scope: punctuation.definition.qualified-path.begin.rust
+      push:
+        - match: '>'
+          scope: punctuation.definition.qualified-path.end.rust
+          pop: true
+        - match: '{{kw_as}}'
+          scope: keyword.operator.word.rust
+          push: type-path
+        - include: type
 
   # Syntax
   # TypePath :
@@ -378,10 +287,11 @@ contexts:
         - include: type
     - match: '->'
       scope: keyword.operator.rust
-    - include: type
+      push:
+        - include: expect-type
 
   path-ident-segment:
-    - match: '{{super}}|{{self}}|{{Self}}|{{crate}}|\${{crate}}'
+    - match: '{{kw_super}}|{{kw_self}}|{{kw_Self}}|{{kw_crate}}|\${{kw_crate}}'
       scope: keyword.other.path.rust
     - match: '{{upper_identifier}}'
       scope: entity.name.path.rust storage.type.rust
@@ -392,11 +302,186 @@ contexts:
 
   # Types
   # ============================================================================
-  type:
-    - match: '{{identifier}}'
-      scope: storage.type.rust
+  # Syntax
+  # Type :
+  #       TypeNoBounds
+  #    | ImplTraitType
+  #    | TraitObjectType
+  expect-type:
+    - include: type
     - match: '(?=\S)'
       pop: true
+  type:
+    - include: type-no-bounds
+
+  # TypeNoBounds :
+  #       ParenthesizedType
+  #    | ImplTraitTypeOneBound
+  #    | TraitObjectTypeOneBound
+  #    | TypePath
+  #    | TupleType
+  #    | NeverType
+  #    | RawPointerType
+  #    | ReferenceType
+  #    | ArrayType
+  #    | SliceType
+  #    | InferredType
+  #    | QualifiedPathInType
+  #    | BareFunctionType
+  #    | MacroInvocation
+  expect-type-no-bounds:
+    - include: type-no-bounds
+    - match: '(?=\S)'
+      pop: true
+  type-no-bounds:
+    # RawPointerType
+    - match: '(\*)({{kw_mut}}|{{kw_const}})'
+      captures:
+        1: keyword.operator.rust
+        2: keyword.rust
+      push:
+        - include: expect-type-no-bounds
+    # ReferenceType
+    - match: '&'
+      scope: keyword.operator.rust
+      push:
+        - include: lifetime
+        - match: '{{kw_mut}}'
+          scope: keyword.rust
+        - include: expect-type-no-bounds
+    # ArrayType
+    # SliceType
+    - match: '\['
+      scope: punctuation.definition.array.begin.rust
+      push:
+        - include: type
+        - match: '\]'
+          scope: punctuation.definition.array.end.rust
+          pop: true
+        - match: ';'
+          scope: punctuation.separator.array.rust
+          set:
+            - include: expression
+            - match: '\]'
+              scope: punctuation.definition.array.end.rust
+              pop: true
+            - match: '(?=\S)' # Recover from errors.
+              pop: true
+        - match: '(?=\S)' # Recover from errors.
+          pop: true
+    # NeverType
+    - match: '!'
+      scope: storage.type.never.rust
+    # InferredType
+    - match: '_'
+      scope: storage.type.inferred.rust
+    # TupleType
+    - match: '\(\)'
+      scope: storage.type.unit.rust
+    # ParenthesizedType
+    - match: '\('
+      scope: punctuation.definition.group.begin.rust
+      push:
+        - match: '\)'
+          scope: punctuation.definition.group.end.rust
+          pop: true
+        - match: ',' # Part of TupleType.
+          scope: punctuation.separator.rust
+        - include: type
+
+    # ImplTraitTypeOneBound
+    - match: '{{kw_impl}}'
+      scope: keyword.rust
+      push:
+        - include: expect-trait-bound
+    # InmplTraitObjectTypeOneBound
+    - match: '{{kw_dyn}}'
+      scope: keyword.rust
+      push:
+        - include: expect-type-param-bounds
+    # TypePath
+    - include: type-path
+    # QualifiedPathInType
+    - include: qualified-path-in-type
+
+
+  # TypeParamBounds :
+  #    TypeParamBound ( + TypeParamBound )* +?
+  expect-type-param-bounds:
+    - include: type-param-bounds
+    - match: '(?=\S)'
+      pop: true
+  type-param-bounds:
+    # TypeParamBound :
+    #       Lifetime | TraitBound
+    - include: lifetime
+    - include: trait-bound
+    - match: '\+'
+      scope: keyword.operator.rust
+
+
+  # TraitBound :
+  #       ?? ForLifetimes? TypePath
+  #    | ( ?? ForLifetimes? TypePath )
+  expect-trait-bound:
+    - include: trait-bound
+    - match: '(?=\S)'
+      pop: true
+  trait-bound:
+    - match: '\('
+      scope: punctuation.definition.group.begin.rust
+      push:
+        - match: '\)'
+          scope: punctuation.definition.group.end.rust
+          pop: true
+        - include: trait-bound-inner
+    - include: trait-bound-inner
+
+
+  trait-bound-inner:
+    - match: '\?'
+      scope: keyword.operator.rust
+    - match: '{{kw_for}}'
+      scope: keyword.rust
+      push:
+        - match: '<'
+          scope: punctuation.definition.for-lifetimes.begin.rust
+          push:
+            - match: '>'
+              scope: punctuation.definition.for-lifetimes.end.rust
+              pop: true
+            - match: ','
+              scope: punctuation.separator.rust
+            - include: lifetime
+    - include: type-path
+
+
+  # LifetimeBounds :
+  #    ( Lifetime + )* Lifetime?
+  lifetime-bounds:
+    - include: lifetime
+    - match: '\+'
+      scope: keyword.operator.rust
+    - match: '(?=\S)'
+      pop: true
+
+  # Lifetime :
+  #       LIFETIME_OR_LABEL
+  #    | 'static
+  #    | '_
+  lifetime:
+    - match: '('')({{kw_static}})'
+      captures:
+        1: punctuation.other.lifetime.rust
+        2: keyword.rust
+    - match: '('')(_)'
+      captures:
+        1: punctuation.other.lifetime.rust
+        2: storage.type.lifetime.rust
+    - match: '('')({{identifier}})'
+      captures:
+        1: punctuation.other.lifetime.rust
+        2: storage.type.lifetime.rust
 
   # Generics
   # ============================================================================
@@ -643,6 +728,7 @@ contexts:
       scope: punctuation.definition.comment.rust
       push:
         - meta_scope: comment.line.rust
+        - include: comment_custom_tags
         - match: $\n?
           pop: true
 
@@ -651,6 +737,7 @@ contexts:
       scope: punctuation.definition.comment.documentation.inner.rust
       push:
         - meta_scope: comment.line.documentation.inner.rust
+        - include: comment_custom_tags
         - match: $\n?
           pop: true
 
@@ -659,6 +746,7 @@ contexts:
       scope: punctuation.definition.comment.documentation.outer.rust
       push:
         - meta_scope: comment.line.documentation.outer.rust
+        - include: comment_custom_tags
         - match: $\n?
           pop: true
 
@@ -671,8 +759,9 @@ contexts:
     - match: '/\*'
       scope: punctuation.definition.comment.begin.rust
       push:
-        - include: any_block_comment # Block comments can nest
         - meta_scope: comment.block.rust
+        - include: any_block_comment # Block comments can nest
+        - include: comment_custom_tags
         - match: '\*/'
           scope: punctuation.definition.comment.end.rust
           pop: true
@@ -681,8 +770,9 @@ contexts:
     - match: '/\*!'
       scope: punctuation.definition.comment.documentation.inner.begin.rust
       push:
-        - include: any_block_comment # Block comments can nest
         - meta_scope: comment.block.documentation.inner.rust
+        - include: any_block_comment # Block comments can nest
+        - include: comment_custom_tags
         - match: '\*/'
           scope: punctuation.definition.comment.documentation.inner.end.rust
           pop: true
@@ -691,8 +781,107 @@ contexts:
     - match: '/\*\*'
       scope: punctuation.definition.comment.documentation.outer.begin.rust
       push:
-        - include: any_block_comment # Block comments can nest
         - meta_scope: comment.block.documentation.outer.rust
+        - include: any_block_comment # Block comments can nest
+        - include: comment_custom_tags
         - match: '\*/'
           scope: punctuation.definition.comment.documentation.outer.end.rust
           pop: true
+
+  operators:
+    - match: '(\.\.\.|\.\.|\.\.=|\*|&)'
+      scope: keyword.operator.rust
+
+    - match: '{{kw_as}}|{{kw_await}}'
+      scope: keyword.operator.word.rust
+
+    - match: '(\+|\+=|-|-=|\*|\*=|/|/=|%|%=)'
+      scope: keyword.operator.arithmetic.rust
+
+    - match: '(&|&=|\||\|=|\^|\^=|!|!=)'
+      scope: keyword.operator.boolean.rust
+
+    - match: '(!|==|!=|>|>=|<|<=|&&|\|\|)'
+      scope: keyword.operator.logical.rust
+
+    - match: '='
+      scope: keyword.operator.assignment.rust
+
+    - match: '(=>|->|:|@)'
+      scope: punctuation.rust
+
+    - match: '(\.|::)'
+      scope: punctuation.accessor.rust
+
+    - match: ','
+      scope: punctuation.separator.rust
+
+    - match: ';'
+      scope: punctuation.terminator.rust
+
+    - match: '\\'
+      scope: punctuation.separator.continuation.rust
+
+  keywords:
+    - match: '(?x)
+        {{kw_abstract}}|
+        {{kw_become}}|
+        {{kw_box}}|
+        {{kw_do}}|
+        {{kw_final}}|
+        {{kw_macro}}|
+        {{kw_override}}|
+        {{kw_priv}}|
+        {{kw_try}}|
+        {{kw_typeof}}|
+        {{kw_unsized}}|
+        {{kw_virtual}}|
+        {{kw_yield}}'
+      scope: invalid.illegal.keyword.rust
+
+    - match: '(?x)
+        {{kw_async}}|
+        {{kw_const}}|
+        {{kw_enum}}|
+        {{kw_extern}}|
+        {{kw_fn}}|
+        {{kw_impl}}|
+        {{kw_let}}|
+        {{kw_mod}}|
+        {{kw_move}}|
+        {{kw_mut}}|
+        {{kw_pub}}|
+        {{kw_ref}}|
+        {{kw_static}}|
+        {{kw_struct}}|
+        {{kw_trait}}|
+        {{kw_type}}|
+        {{kw_union}}|
+        {{kw_unsafe}}|
+        {{kw_use}}|
+        {{kw_where}}'
+      scope: keyword.rust
+
+    - match: '(?x)
+        {{kw_break}}|
+        {{kw_continue}}|
+        {{kw_for}}|
+        {{kw_in}}|
+        {{kw_loop}}|
+        {{kw_match}}|
+        {{kw_return}}|
+        {{kw_while}}'
+      scope: keyword.control.rust
+
+    - match: '{{kw_else}}|{{kw_if}}'
+      scope: keyword.control.conditional.rust
+
+    - match: '{{kw_self}}|{{kw_super}}|{{kw_crate}}'
+      scope: keyword.other.rust
+
+    - match: '{{kw_Self}}|{{kw_dyn}}'
+      scope: storage.type.rust
+
+    - match: '{{kw_true}}|{{kw_false}}'
+      scope: constant.language.rust
+

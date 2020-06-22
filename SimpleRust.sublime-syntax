@@ -100,7 +100,7 @@ contexts:
       scope: storage.type.simplerust
     - match: '\b{{float_suffixes}}\b'
       scope: storage.type.simplerust
-    - match: '\b(bool)\b'
+    - match: '\b(bool|str)\b'
       scope: storage.type.simplerust
     - match: '{{lifetime}}'
       scope: storage.type.simplerust

@@ -77,6 +77,7 @@ pub mod abc {
 
 let u: [A; 3] = abc;
 
+#[test]
 #![InnerAttr(some_value = "blah")]
 #![InnerAttr(some_value)]
 #![InnerAttr(some_value(abc))]

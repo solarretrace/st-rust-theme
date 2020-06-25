@@ -283,6 +283,8 @@ contexts:
         - match: ','
           scope: punctuation.separator.attribute.simplerust
         - include: attribute-entry
+        - match: '({{identifier}})'
+          scope: entity.name.attribute.simplerust
 
   outer-attribute:
     - match: '#\['
@@ -296,6 +298,8 @@ contexts:
         - match: ','
           scope: punctuation.separator.attribute.simplerust
         - include: attribute-entry
+        - match: '({{identifier}})'
+          scope: entity.name.attribute.simplerust
 
   # Strings
   # ============================================================================

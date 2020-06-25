@@ -405,7 +405,7 @@ contexts:
   # Comments
   # ============================================================================
   comment_custom_tags:
-    - match: '(TODO):'
+    - match: '(TODO|NOTE):'
       captures:
         1: comment.tag.simplerust
 

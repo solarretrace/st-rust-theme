@@ -215,6 +215,62 @@ contexts:
     - include: inner-attribute
     - include: outer-attribute
 
+  attribute-entry:
+    - match: '({{identifier}})(\()'
+      captures:
+        1: entity.name.attribute.simplerust
+        2: punctuation.definition.simplerust
+      push:
+        - include: attribute-entry-inner
+        - match: '\)'
+          scope: punctuation.definition.simplerust
+          pop: true
+    - match: '({{identifier}})(\[)'
+      captures:
+        1: entity.name.attribute.simplerust
+        2: punctuation.definition.simplerust
+      push:
+        - include: attribute-entry-inner
+        - match: '\]'
+          scope: punctuation.definition.simplerust
+          pop: true
+    - match: '({{identifier}})(\{)'
+      captures:
+        1: entity.name.attribute.simplerust
+        2: punctuation.definition.simplerust
+      push:
+        - include: attribute-entry-inner
+        - match: '\}'
+          scope: punctuation.definition.simplerust
+          pop: true
+
+  attribute-entry-inner:
+    - match: '{{identifier}}(\()'
+      captures:
+        1: punctuation.definition.simplerust
+      push:
+        - include: attribute-entry-inner
+        - match: '\)'
+          scope: punctuation.definition.simplerust
+          pop: true
+    - match: '{{identifier}}(\[)'
+      captures:
+        1: punctuation.definition.simplerust
+      push:
+        - include: attribute-entry-inner
+        - match: '\]'
+          scope: punctuation.definition.simplerust
+          pop: true
+    - match: '{{identifier}}(\{)'
+      captures:
+        1: punctuation.definition.simplerust
+      push:
+        - include: attribute-entry-inner
+        - match: '\}'
+          scope: punctuation.definition.simplerust
+          pop: true
+
+
   inner-attribute:
     - match: '#!\['
       scope: punctuation.definition.attribute.begin.simplerust
@@ -224,9 +280,9 @@ contexts:
         - match: '\]'
           scope: punctuation.definition.attribute.end.simplerust
           pop: true
-        - match: '(\S+)\('
-          captures:
-            1: entity.name.attribute.simplerust
+        - match: ','
+          scope: punctuation.separator.attribute.simplerust
+        - include: attribute-entry
 
   outer-attribute:
     - match: '#\['
@@ -237,9 +293,9 @@ contexts:
         - match: '\]'
           scope: punctuation.definition.attribute.end.simplerust
           pop: true
-        - match: '(\S+)\('
-          captures:
-            1: entity.name.attribute.simplerust
+        - match: ','
+          scope: punctuation.separator.attribute.simplerust
+        - include: attribute-entry
 
   # Strings
   # ============================================================================

@@ -90,10 +90,11 @@ contexts:
     - match: '{{identifier}}!'
       scope: entity.name.macro.simplerust
 
-    - match: '({{fn}})\s+({{identifier}})'
+    - match: '(default\s+)?({{fn}})\s+({{identifier}})'
       captures:
         1: keyword.declaration.simplerust
-        2: entity.name.function.simplerust
+        2: keyword.declaration.simplerust
+        3: entity.name.function.simplerust
     - include: keywords
 
     - match: '\b{{int_suffixes}}\b'

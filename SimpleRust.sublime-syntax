@@ -224,6 +224,9 @@ contexts:
         - match: '\]'
           scope: punctuation.definition.attribute.end.simplerust
           pop: true
+        - match: '(\S+)\('
+          captures:
+            1: entity.name.attribute.simplerust
 
   outer-attribute:
     - match: '#\['
@@ -234,6 +237,9 @@ contexts:
         - match: '\]'
           scope: punctuation.definition.attribute.end.simplerust
           pop: true
+        - match: '(\S+)\('
+          captures:
+            1: entity.name.attribute.simplerust
 
   # Strings
   # ============================================================================

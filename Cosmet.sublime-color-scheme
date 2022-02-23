@@ -23,7 +23,7 @@
     
     "globals":
     {
-        "background": "#252532",
+        "background": "#272734",
         "foreground": "var(white)",
         "invisibles": "var(green)",
         "caret": "#CEE2E3",
@@ -52,10 +52,11 @@
         { "scope": "meta.annotation", "foreground": "var(green)" },
 
         // General keywords and punctuation.
-        { "scope": "keyword",          "foreground": "var(orange)" },
-        { "scope": "keyword.other",    "foreground": "var(pale_blue)" },
-        { "scope": "keyword.operator", "foreground": "var(grey)" },
-        { "scope": "punctuation",      "foreground": "var(grey)" },
+        { "scope": "keyword",             "foreground": "var(orange)" },
+        { "scope": "keyword.declaration", "foreground": "var(orange)" },
+        { "scope": "keyword.other",       "foreground": "var(pale_blue)" },
+        { "scope": "keyword.operator",    "foreground": "var(grey)" },
+        { "scope": "punctuation",         "foreground": "var(grey)" },
 
         // Strings and constants.
         { "scope": "string",                     "foreground": "var(deep_purple)" },

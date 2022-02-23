@@ -139,6 +139,7 @@ contexts:
     - match: '(?x)
         {{async}}|
         {{const}}|
+        {{dyn}}|
         {{enum}}|
         {{extern}}|
         {{fn}}|
@@ -176,7 +177,7 @@ contexts:
     - match: '{{self}}|{{super}}|{{crate}}'
       scope: keyword.other.simplerust
 
-    - match: '{{Self}}|{{dyn}}'
+    - match: '{{Self}}'
       scope: storage.type.simplerust
 
     - match: '{{true}}|{{false}}'

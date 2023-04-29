@@ -14,6 +14,11 @@
 		<string><![CDATA[(?x)
 		^(.*\*/)? \s*[\}\)\]].*$
 		]]></string>
+
+		<key>bracketIndentNextLinePattern</key>
+		<string><![CDATA[(?x)
+		^.*,\s*$$
+		]]></string>
 	</dict>
 </dict>
 </plist>
